@@ -1,16 +1,21 @@
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
 
+const maxWidthContainer = `1024px`;
+
+const medias = {
+  md1: ``,
+  md2: ``,
+  md3: ``,
+  md4: ``,
+}
+
+const GlobalStyle = createGlobalStyle`
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
 }
-
-// fonts
-// 40, 30, 24, 20, 14
 
 h1 {
   font-size: 40px;
@@ -25,6 +30,26 @@ h4 {
   font-size: 20px;
 }
 
+._container {
+  // 1024
+  max-width: ${maxWidthContainer};
+  margin: 0 auto;
+  /* @media (max-width: ${medias.md1}) {
+    max-width: ;
+  }
+
+  @media (max-width: ${medias.md2}) {
+    max-width: ;
+  }
+
+  @media (max-width: ${medias.md3}) {
+    max-width: ;
+  }
+
+  @media (max-width: ${medias.md4}) {
+    max-width: ;
+  } */
+}
 
 
 ul[class],
@@ -55,6 +80,7 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 ul[class],

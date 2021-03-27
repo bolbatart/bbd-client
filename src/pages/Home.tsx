@@ -4,8 +4,7 @@ import styled from "styled-components";
 const Home: React.FC = () => {
   return (
     <StyledHome>
-      <h1>heading</h1>
-      <p>paragraph</p>
+      <h4>Home page</h4>
     </StyledHome>
   );
 };
