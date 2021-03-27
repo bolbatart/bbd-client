@@ -6,7 +6,26 @@ const GlobalStyle = createGlobalStyle`
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
+
+// fonts
+// 40, 30, 24, 20, 14
+
+h1 {
+  font-size: 40px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 20px;
+}
+
+
 
 ul[class],
 ol[class] {
@@ -35,6 +54,7 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  font-size: 14px;
 }
 
 ul[class],
