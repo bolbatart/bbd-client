@@ -11,4 +11,7 @@ const Footer: React.FC = () => {
 
 export default Footer;
 
-const StyledFooter = styled.div``;
+const StyledFooter = styled.div`
+  // height must be set in the components/Layout.tsx footer { }
+  height: 100%;
+`;
