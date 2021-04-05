@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Header from "components/Header/Header";
+import Header from "components/Header/NavHeader/NavHeader";
 import Footer from "components/Footer/Footer";
 
 import RenderRoutes from "services/router/RenderRoutes";
