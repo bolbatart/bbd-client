@@ -78,6 +78,7 @@ const StyledHome = styled.div`
         padding-top: 44px;
         padding-bottom: 44px;
         display: flex;
+        /* flex-wrap: wrap; */
         justify-content: space-between;
       }
     }
@@ -113,6 +114,21 @@ const StyledHome = styled.div`
 
       &__title {
         margin: 45px 0 33px 0;
+      }
+    }
+
+    // instructions
+    @media (max-width: 900px) {
+      &-instructions {
+        &-container {
+          flex-direction: column;
+          > div {
+            max-width: 600px;
+            &:nth-child(-n + 2) {
+              margin: 0 0 40px;
+            }
+          }
+        }
       }
     }
   }
