@@ -3,13 +3,14 @@ import Home from "pages/Home";
 import GlobalStyles from "styles/globalStyles";
 
 import RenderRoutes from "services/router/RenderRoutes";
+import Layout from "components/Layout/Layout";
 
 function App() {
   return (
     <>
       <GlobalStyles />
       <div className="App">
-        <RenderRoutes />
+        <Layout />
       </div>
     </>
   );

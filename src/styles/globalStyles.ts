@@ -4,10 +4,9 @@ import { createGlobalStyle } from 'styled-components';
 const maxWidthContainer = `1024px`;
 
 const medias = {
-  md1: ``,
-  md2: ``,
-  md3: ``,
-  md4: ``,
+  md1: `1120px`,
+  md2: `820px`,
+  md3: `472px`
 }
 
 const GlobalStyle = createGlobalStyle`
@@ -30,31 +29,41 @@ h4 {
   font-size: 20px;
 }
 
-._container {
-  // 1024
-  max-width: ${maxWidthContainer};
-  margin: 0 auto;
-  /* @media (max-width: ${medias.md1}) {
-    max-width: ;
-  }
-
-  @media (max-width: ${medias.md2}) {
-    max-width: ;
-  }
-
-  @media (max-width: ${medias.md3}) {
-    max-width: ;
-  }
-
-  @media (max-width: ${medias.md4}) {
-    max-width: ;
-  } */
+.semi-bold {
+  font-weight: 600;
+}
+.bold {
+  font-weight: 700;
 }
 
 
-ul[class],
-ol[class] {
+._container {
+  max-width: ${maxWidthContainer};
+  margin: 0 auto;
+  padding: 0 16px;
+
+  //1120
+  /* @media (max-width: ${medias.md1}) {
+    max-width: 724px;
+  }
+
+  @media (max-width: ${medias.md2}) {
+    max-width: 424px;
+  }
+
+  @media (max-width: ${medias.md3}) {
+    max-width: none;
+    padding: 0 24px;
+  } */
+
+  }
+}
+
+
+ul,
+ol {
   padding: 0;
+  list-style: none;
 }
 
 body,
@@ -63,8 +72,8 @@ h2,
 h3,
 h4,
 p,
-ul[class],
-ol[class],
+ul,
+ol,
 li,
 figure,
 figcaption,

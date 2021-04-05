@@ -1,19 +1,40 @@
 import React from "react";
 import styled from "styled-components";
 
-import Header from "components/Header/Header";
+import Header from "components/Header/NavHeader/NavHeader";
 import Footer from "components/Footer/Footer";
 
-const Layout: React.FC = (props) => {
+import RenderRoutes from "services/router/RenderRoutes";
+
+const Layout: React.FC = () => {
   return (
     <StyledLayout>
       <Header />
-      {props.children}
-      <Footer />
+      <main>
+        <RenderRoutes />
+      </main>
+      <footer>
+        <Footer />
+      </footer>
     </StyledLayout>
   );
 };
 
 export default Layout;
 
-const StyledLayout = styled.div``;
+const StyledLayout = styled.div`
+  position: relative;
+  min-height: 100vh;
+
+  main {
+    // same as footer's height
+    padding: 0 0 80px 0;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+
+    height: 80px;
+  }
+`;
