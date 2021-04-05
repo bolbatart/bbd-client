@@ -83,8 +83,20 @@ const StyledHome = styled.div`
       }
     }
 
+    &-ntw {
+      background-color: #f5f5f5;
+      &__container {
+        padding-top: 45px;
+        padding-bottom: 45px;
+      }
+
+      &__title {
+        margin: 0 0 33px 0;
+      }
+    }
+
     &-join {
-      height: 200px;
+      /* height: 200px; */
       background-color: #18a0fb;
 
       &-container {
@@ -95,6 +107,7 @@ const StyledHome = styled.div`
       }
 
       &__title {
+        margin: 68px 0;
         max-width: 470px;
         color: white;
       }
@@ -103,17 +116,6 @@ const StyledHome = styled.div`
         button:first-child {
           margin: 0 25px 0 0;
         }
-      }
-    }
-
-    &-ntw {
-      background-color: #f5f5f5;
-      &__container {
-        padding: 45px 0;
-      }
-
-      &__title {
-        margin: 45px 0 33px 0;
       }
     }
 
@@ -128,6 +130,24 @@ const StyledHome = styled.div`
               margin: 0 0 40px;
             }
           }
+        }
+      }
+    }
+
+    // join
+    @media (max-width: 760px) {
+      &-join {
+        &-container {
+          flex-direction: column;
+        }
+
+        &__title {
+          margin-bottom: 40px;
+          text-align: center;
+        }
+
+        &__buttons {
+          margin-bottom: 68px;
         }
       }
     }
