@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import ElasticCarousel from "react-elastic-carousel";
+import ProjectCard from "components/Cards/ProjectCard";
 
 interface IProps {}
 
@@ -20,11 +21,24 @@ const Carousel: React.FC<IProps> = (props) => {
         isRTL={false}
         pagination={false}
       >
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
+        <div className="item">
+          <ProjectCard />
+        </div>
+        <div className="item">
+          <ProjectCard />
+        </div>
+        <div className="item">
+          <ProjectCard />
+        </div>
+        <div className="item">
+          <ProjectCard />
+        </div>
+        <div className="item">
+          <ProjectCard />
+        </div>
+        <div className="item">
+          <ProjectCard />
+        </div>
       </ElasticCarousel>
     </StyledCarousel>
   );
@@ -34,9 +48,6 @@ export default Carousel;
 
 const StyledCarousel = styled.div`
   .item {
-    width: 450px;
-    height: 623px;
-    background-color: orange;
     margin: 15px;
   }
 
@@ -46,7 +57,15 @@ const StyledCarousel = styled.div`
   /* round buttons on hover */
   .rec.rec-arrow:hover {
     /* border-radius: 50%; */
-    background-color: orange;
+    background-color: #18a0fb;
+  }
+  .rec.rec-arrow:active {
+    /* border-radius: 50%; */
+    background-color: #18a0fb;
+  }
+  .rec.rec-arrow:focus {
+    /* border-radius: 50%; */
+    background-color: #18a0fb;
   }
   /* hide disabled buttons */
   .rec.rec-arrow:disabled {
