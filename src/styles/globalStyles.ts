@@ -28,6 +28,9 @@ h3 {
 h4 {
   font-size: 20px;
 }
+h5, h6 {
+  font-size: 14px;
+}
 
 .semi-bold {
   font-weight: 600;
