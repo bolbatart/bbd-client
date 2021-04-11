@@ -1,16 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 
+import ProjectsHeaderImage from "assets/images/projectsheader.jpg";
+
+import BigHeader from "components/Header/BigHeader";
+import ProjectsHeaderContent from "components/Header/HeaderContents/ProjectsHeaderContent";
 import ProjectCard from "components/Cards/ProjectCard";
 
 const ProjectsList: React.FC = () => {
   return (
     <StyledProjectsList>
-      <h4>Projects' List Page</h4>
+      <section className="prl-header">
+        <BigHeader image={ProjectsHeaderImage}>
+          <ProjectsHeaderContent />
+        </BigHeader>
+      </section>
 
-      <div className="_container">
+      {/* <div className="_container">
         <ProjectCard />
-      </div>
+      </div> */}
     </StyledProjectsList>
   );
 };

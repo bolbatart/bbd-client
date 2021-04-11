@@ -24,4 +24,11 @@ const StyledBigHeader = styled.div<IStyledProps>`
   .content-wrapper {
     height: 100%;
   }
+
+  @media (max-width: 650px) {
+    .content-wrapper {
+      padding: 0;
+      width: 100%;
+    }
+  }
 `;
