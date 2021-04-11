@@ -84,6 +84,8 @@ blockquote,
 dl,
 dd {
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 body {

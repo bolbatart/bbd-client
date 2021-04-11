@@ -51,7 +51,7 @@ export default ProjectCard;
 
 const StyledProjectCard = styled.div`
   max-width: 450px;
-  border: 1px solid #808080;
+  /* border: 1px solid #808080; */
   // shadows
   -webkit-box-shadow: 0px 5px 6px -1px rgba(0, 0, 0, 0.6);
   box-shadow: 0px 5px 6px -1px rgba(0, 0, 0, 0.3);
