@@ -11,44 +11,50 @@ import { Dropdown } from "semantic-ui-react";
 const ProjectsList: React.FC = () => {
   return (
     <StyledProjectsList>
+      {/* Header */}
       <section className="prl-header">
         <BigHeader image={ProjectsHeaderImage}>
           <ProjectsHeaderContent />
         </BigHeader>
       </section>
 
+    {/* Sort by / projects list  */}
       <section className="prl-projects">
         <div className="_container">
+          {/* Sort by */}
           <div className="prl-projects-sortby">
             <span>Sort by:</span>
-            <Dropdown
-              placeholder="Project area"
-              multiple
-              selection
-              options={undefined}
-            />
-            <Dropdown
-              placeholder="Available positions"
-              multiple
-              selection
-              options={undefined}
-            />
-            <Dropdown
-              placeholder="Country"
-              multiple
-              selection
-              options={undefined}
-            />
-            <Dropdown
-              placeholder="Data published"
-              multiple
-              selection
-              options={undefined}
-            />
+            <div className="prl-projects-sortby__wrapper">
+              <Dropdown
+                placeholder="Project area"
+                multiple
+                selection
+                options={undefined}
+              />
+              <Dropdown
+                placeholder="Available positions"
+                multiple
+                selection
+                options={undefined}
+              />
+              <Dropdown
+                placeholder="Country"
+                multiple
+                selection
+                options={undefined}
+              />
+              <Dropdown
+                placeholder="Data published"
+                multiple
+                selection
+                options={undefined}
+              />
+            </div>
           </div>
 
           <h2 className="bold">Find an existing project to work on!</h2>
 
+          {/* Projects */}
           <div className="prl-projects__container">
             {Array(30).fill(
               <div className="prl-projects__item">
@@ -74,6 +80,24 @@ const StyledProjectsList = styled.div`
   }
 
   .prl-projects {
+    &-sortby {
+      margin: 42px 0 58px;
+      display: flex;
+      align-items:center;
+
+      &__wrapper {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      span {
+        margin-right: 80px;
+      }
+    }
+    
     &__container {
       margin-top: 40px;
       display: flex;
@@ -83,15 +107,67 @@ const StyledProjectsList = styled.div`
 
     &__item {
       margin-bottom: 80px;
+      display: flex;
+      flex: 34%;
+      
+      >div {
+        /* display: flex; */
+      }
+
+      &:nth-child(odd) {
+        margin-right: 40px;
+      }
+      
+      &:nth-child(even) {
+        justify-content: flex-end;
+      }
+      
     }
 
-    &-sortby {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 42px 0 58px;
-      span {
-        margin-right: 80px;
+    
+  }
+
+// sort by
+  @media (max-width: 980px) {
+    .prl-projects-sortby {
+      display: block;
+      
+      &__wrapper {
+        >div {
+          flex: 34%;
+          margin-top: 20px;
+
+          &:nth-child(odd) {
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 500px) {
+    .prl-projects-sortby {
+      &__wrapper {
+        display: block;
+        >div {
+          display:block !important;
+          margin: 20px 0px 0px 0px !important;
+        }
+      }
+    }
+  }
+
+// projects list
+  @media (max-width: 780px) {
+    .prl-projects {
+      &__container {
+        display: block;
+      }
+
+      &__item {
+        display: flex;
+        justify-content: center !important;
+        margin-right: 0 !important;
       }
     }
   }
