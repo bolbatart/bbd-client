@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import ProjectsHeaderImage from "assets/images/projectsheader.jpg";
 
-import BigHeader from "components/Header/BigHeader";
+import Header from "components/Header/Header";
 import ProjectsHeaderContent from "components/Header/HeaderContents/ProjectsHeaderContent";
 import ProjectCard from "components/Cards/ProjectCard";
 import { Dropdown } from "semantic-ui-react";
@@ -13,9 +13,9 @@ const ProjectsList: React.FC = () => {
     <StyledProjectsList>
       {/* Header */}
       <section className="prl-header">
-        <BigHeader image={ProjectsHeaderImage}>
+        <Header image={ProjectsHeaderImage}>
           <ProjectsHeaderContent />
-        </BigHeader>
+        </Header>
       </section>
 
     {/* Sort by / projects list  */}

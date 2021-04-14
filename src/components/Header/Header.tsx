@@ -4,8 +4,9 @@ import styled from "styled-components";
 interface IProps extends IStyledProps {}
 
 const BigHeader: React.FC<IProps> = (props) => {
+  const {...rest} = props;
   return (
-    <StyledBigHeader image={props.image}>
+    <StyledBigHeader {...rest}>
       <div className="content-wrapper _container">{props.children}</div>
     </StyledBigHeader>
   );
@@ -15,10 +16,11 @@ export default BigHeader;
 
 interface IStyledProps {
   image: string;
+  small?: boolean;
 }
 
 const StyledBigHeader = styled.div<IStyledProps>`
-  height: 550px;
+  height: ${props => props.small ? '367' : '550'}px;
   background: ${(props) => `url(${props.image}) center / cover no-repeat;`};
 
   .content-wrapper {

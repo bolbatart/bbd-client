@@ -4,12 +4,14 @@ import Home from 'pages/Home';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 import ProjectsList from 'pages/ProjectsList';
+import Project from 'pages/Project';
 
 export const routePaths = {
   home: '/',
   login: '/login',
   register: '/register',
-  projectsList: '/projects'
+  projectsList: '/projects',
+  project: '/projects/:id',
 }
 
 export const routes: IRoute[] = [
@@ -33,4 +35,9 @@ export const routes: IRoute[] = [
     page: ProjectsList,
     path: routePaths.projectsList
   },
+  {
+    auth: false,
+    page: Project,
+    path: routePaths.project
+  }
 ]

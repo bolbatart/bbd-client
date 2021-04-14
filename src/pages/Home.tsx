@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import BigHeader from "components/Header/BigHeader";
+import Header from "components/Header/Header";
 import image from "assets/images/hpheader.jpg";
 import HomeHeaderContent from "components/Header/HeaderContents/HomeHeaderContent";
 import AppDescCard from "components/Cards/AppDescCard";
@@ -11,9 +11,9 @@ import Carousel from "components/Carousel/Carousel";
 const Home: React.FC = () => {
   return (
     <StyledHome>
-      <BigHeader image={image}>
+      <Header image={image}>
         <HomeHeaderContent />
-      </BigHeader>
+      </Header>
 
       {/* instruction */}
       <section className="hp-instructions">
