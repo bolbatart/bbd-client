@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 
 import HeaderImage from 'assets/images/hpheader.jpg';
@@ -11,6 +11,9 @@ import { Button } from 'reactstrap';
 interface IProps { }
 
 const Profile: React.FC<IProps> = (props) => {
+  const isAuth = true;
+  const [isEditOpen, setIsEditOpen] = useState(false);
+
   return (
     <StyledProfile>
       <Header image={HeaderImage}>
@@ -25,7 +28,16 @@ const Profile: React.FC<IProps> = (props) => {
 
             <p className="prf-header__bio">Looking for hardworking people to join my team! Enthusiasm & sports</p>
 
-            <Button>Contact me</Button>
+            <div className='prf-header__buttons'>
+              {isAuth ? (
+                <>
+                  <Button outline>Edit information</Button>
+                  <Button>Post a new project</Button>
+                </>
+              ) : (
+                <Button>Contact me</Button>
+              )}
+            </div>
           </div>
         </div>
       </Header>
@@ -77,6 +89,12 @@ const StyledProfile = styled.div`
 
       &__bio {
         margin-bottom: 20px;
+      }
+
+      &__buttons {
+        >:first-child {
+          margin-right: 16px;
+        }
       }
     }
 
