@@ -8,7 +8,7 @@ import LinkedInIcon from 'assets/icons/linkedin.svg';
 import FacebookIcon from 'assets/icons/facebook.svg';
 import Avatar from 'assets/images/avatar.jpg';
 import RedDot from 'assets/icons/offline.svg';
-import GreenDot from 'assers/icons/online.svg';
+import GreenDot from 'assets/icons/online.svg';
 
 import Header from 'components/Header/Header';
 import { Button } from 'reactstrap';
