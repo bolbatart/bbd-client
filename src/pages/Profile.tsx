@@ -13,6 +13,7 @@ interface IProps { }
 const Profile: React.FC<IProps> = (props) => {
   const isAuth = true;
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isPostedOpen, setIsPostedOpen] = useState(true);
 
   return (
     <StyledProfile>
@@ -44,8 +45,8 @@ const Profile: React.FC<IProps> = (props) => {
     
       <section className="prf-projects">
         <div className="prf-projects-selector">
-          <h3 className="prf-projects-selector__posted">Posted projects</h3>
-          <h3 className="prf-projects-selector__liked">Liked projects</h3>
+          <h3 className={`prf-projects-selector__item ${isPostedOpen ? '' : '_normal'}`} onClick={() => setIsPostedOpen(true)}>Posted projects</h3>
+          <h3 className={`prf-projects-selector__item ${isPostedOpen ? '_normal' : ''}`} onClick={() => setIsPostedOpen(false)}>Liked projects</h3>
         </div>
 
         <div className="prf-projects__list">
@@ -106,8 +107,12 @@ const StyledProfile = styled.div`
         justify-content: center;
         margin-bottom: 50px;
 
-        &__posted {
-          margin-right: 40px;
+        &__item {
+          cursor: pointer;
+
+          &:first-child {
+            margin-right: 40px;
+          }
         }
       }
     }
