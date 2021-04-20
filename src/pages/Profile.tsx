@@ -27,7 +27,11 @@ const Profile: React.FC<IProps> = (props) => {
             <span className="prf-header__position">Senior Devoloper</span>
             <span className="prf-header__location">London, United Kingdom</span>
 
-            <p className="prf-header__bio">Looking for hardworking people to join my team! Enthusiasm & sports</p>
+            <p className="prf-header__bio">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facere molestias porro nihil, modi iste earum nostrum officiis veritatis sapiente rerum aspernatur corporis id molestiae, dolores veniam sed quos quod.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam illo quaerat temporibus repellendus, ipsam sit nobis. Assumenda dolor dicta minus, maxime ut amet mollitia at. Eaque optio asperiores nobis distinctio.
+              lore
+              Looking for hardworking people to join my team! Enthusiasm & sports</p>
 
             <div className='prf-header__buttons'>
               {isAuth ? (
@@ -90,6 +94,8 @@ const StyledProfile = styled.div`
 
       &__bio {
         margin-bottom: 20px;
+        max-height: 150px;
+        text-overflow: ellipsis;
       }
 
       &__buttons {
@@ -115,6 +121,28 @@ const StyledProfile = styled.div`
           }
         }
       }
+    }
+  
+    @media(max-width: 920px) {
+      &-header {
+        &__avatar {
+          height: 150px;
+        }
+        &__container {
+          flex-direction: column;
+          justify-content: center;
+        }
+        &__desc-wrapper {
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
+
+    @media(max-width: 620px) {
+
     }
   }
 `;
