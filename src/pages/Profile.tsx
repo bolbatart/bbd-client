@@ -6,7 +6,9 @@ import Avatar from 'assets/images/avatar.jpg';
 
 import Header from 'components/Header/Header';
 import { Button } from 'reactstrap';
-
+import ProjectCard from 'components/Cards/ProjectCard';
+import ListOfProjects from 'components/List/ListOfProjects';
+import EditProfileDialog from 'components/Dialogs/EditProfileDialog';
 
 interface IProps { }
 
@@ -15,10 +17,16 @@ const Profile: React.FC<IProps> = (props) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isPostedOpen, setIsPostedOpen] = useState(true);
 
+  const toogleEditModal = () => {
+    setIsEditOpen(!isEditOpen);
+  }
+
   return (
     <StyledProfile>
+      <EditProfileDialog isOpen={isEditOpen} toogle={toogleEditModal} />
+
       <Header image={HeaderImage}>
-        <div className="prf-header__container">
+        <div className="prf-header__container _container">
           <img src={Avatar} alt="" className="prf-header__avatar _avatar" />
 
           <div className="prf-header__desc-wrapper">
@@ -28,15 +36,13 @@ const Profile: React.FC<IProps> = (props) => {
             <span className="prf-header__location">London, United Kingdom</span>
 
             <p className="prf-header__bio">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facere molestias porro nihil, modi iste earum nostrum officiis veritatis sapiente rerum aspernatur corporis id molestiae, dolores veniam sed quos quod.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam illo quaerat temporibus repellendus, ipsam sit nobis. Assumenda dolor dicta minus, maxime ut amet mollitia at. Eaque optio asperiores nobis distinctio.
-              lore
-              Looking for hardworking people to join my team! Enthusiasm & sports</p>
+              Looking for hardworking people to join my team! Enthusiasm & sports
+            </p>
 
             <div className='prf-header__buttons'>
               {isAuth ? (
                 <>
-                  <Button outline>Edit information</Button>
+                  <Button outline onClick={toogleEditModal}>Edit information</Button>
                   <Button>Post a new project</Button>
                 </>
               ) : (
@@ -53,9 +59,7 @@ const Profile: React.FC<IProps> = (props) => {
           <h3 className={`prf-projects-selector__item ${isPostedOpen ? '_normal' : ''}`} onClick={() => setIsPostedOpen(false)}>Liked projects</h3>
         </div>
 
-        <div className="prf-projects__list">
-          {/* List of projects */}
-        </div>
+        <ListOfProjects />
       </section>
     </StyledProfile>
   )
@@ -79,7 +83,6 @@ const StyledProfile = styled.div`
       }
 
       &__avatar {
-        border-radius: 50%;
         height: 300px;
       }
 
@@ -122,6 +125,8 @@ const StyledProfile = styled.div`
         }
       }
     }
+
+
   
     @media(max-width: 920px) {
       &-header {
@@ -139,10 +144,6 @@ const StyledProfile = styled.div`
           align-items: center;
         }
       }
-    }
-
-    @media(max-width: 620px) {
-
     }
   }
 `;

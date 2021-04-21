@@ -7,6 +7,7 @@ import Header from "components/Header/Header";
 import ProjectsHeaderContent from "components/Header/HeaderContents/ProjectsHeaderContent";
 import ProjectCard from "components/Cards/ProjectCard";
 import { Dropdown } from "semantic-ui-react";
+import ListOfProjects from "components/List/ListOfProjects";
 
 const ProjectsList: React.FC = () => {
   return (
@@ -55,13 +56,14 @@ const ProjectsList: React.FC = () => {
           <h2 className="bold">Find an existing project to work on!</h2>
 
           {/* Projects */}
-          <div className="prl-projects__container">
+          {/* <div className="prl-projects__container">
             {Array(30).fill(
               <div className="prl-projects__item">
                 <ProjectCard />
               </div>
             )}
-          </div>
+          </div> */}
+          <ListOfProjects />
         </div>
       </section>
 
@@ -97,34 +99,6 @@ const StyledProjectsList = styled.div`
         margin-right: 80px;
       }
     }
-    
-    &__container {
-      margin-top: 40px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
-    &__item {
-      margin-bottom: 80px;
-      display: flex;
-      flex: 34%;
-      
-      >div {
-        /* display: flex; */
-      }
-
-      &:nth-child(odd) {
-        margin-right: 40px;
-      }
-      
-      &:nth-child(even) {
-        justify-content: flex-end;
-      }
-      
-    }
-
-    
   }
 
 // sort by
@@ -153,21 +127,6 @@ const StyledProjectsList = styled.div`
           display:block !important;
           margin: 20px 0px 0px 0px !important;
         }
-      }
-    }
-  }
-
-// projects list
-  @media (max-width: 780px) {
-    .prl-projects {
-      &__container {
-        display: block;
-      }
-
-      &__item {
-        display: flex;
-        justify-content: center !important;
-        margin-right: 0 !important;
       }
     }
   }
