@@ -38,7 +38,9 @@ h5, h6 {
 .bold {
   font-weight: 700;
 }
-
+._normal {
+  font-weight: normal;
+}
 
 ._container {
   max-width: ${maxWidthContainer};
