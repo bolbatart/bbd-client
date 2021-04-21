@@ -45,6 +45,26 @@ h5, h6 {
   margin: 0 auto;
   padding: 0 16px;
 
+._likes {
+  img {
+    display: inline-block;
+    margin-right: 20px;
+  }
+}
+
+._avatar {
+  border-radius: 50%;
+}
+
+._link {
+  color: #18a0fb;
+        margin: 0 30px 0 0;
+        &:hover {
+          cursor: pointer;
+          text-stroke: 1px #18a0fb;
+          -webkit-text-stroke: 1px #18a0fb;
+        }
+}
   //1120
   /* @media (max-width: ${medias.md1}) {
     max-width: 724px;

@@ -36,20 +36,22 @@ const Header: React.FC = () => {
         <nav className={`nh-menu-navs mobile ${isMenuOpen ? "open" : ""}`}>
           <ul>
             <li
-              className="nh-nav-item mobile _container"
+              className="nh-nav-item _link mobile _container"
               onClick={() => onLink(routePaths.home)}
             >
               Home
             </li>
             <li
-              className="nh-nav-item mobile _container"
+              className="nh-nav-item _link mobile _container"
               onClick={() => onLink(routePaths.projectsList)}
             >
               Projects
             </li>
-            <li className="nh-nav-item mobile _container">Post a project</li>
+            <li className="nh-nav-item _link mobile _container">
+              Post a project
+            </li>
             <li
-              className="nh-nav-item mobile _container"
+              className="nh-nav-item _link mobile _container"
               onClick={() => onLink(routePaths.login)}
             >
               Log in
@@ -59,16 +61,19 @@ const Header: React.FC = () => {
 
         <nav className="nh-menu-navs desktop">
           <ul>
-            <li className="nh-nav-item" onClick={() => onLink(routePaths.home)}>
+            <li
+              className="nh-nav-item _link"
+              onClick={() => onLink(routePaths.home)}
+            >
               Home
             </li>
             <li
-              className="nh-nav-item"
+              className="nh-nav-item _link"
               onClick={() => onLink(routePaths.projectsList)}
             >
               Projects
             </li>
-            <li className="nh-nav-item">Post a project</li>
+            <li className="nh-nav-item _link">Post a project</li>
           </ul>
           <Button
             outline
@@ -106,13 +111,13 @@ const StyledHeader = styled.div`
       }
 
       li {
-        color: #18a0fb;
+        /* color: #18a0fb; */
         margin: 0 30px 0 0;
-        &:hover {
+        /* &:hover {
           cursor: pointer;
           text-stroke: 1px #18a0fb;
           -webkit-text-stroke: 1px #18a0fb;
-        }
+        } */
       }
     }
     /* / DESKTOP */
