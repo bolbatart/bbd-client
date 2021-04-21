@@ -193,9 +193,10 @@ const Project: React.FC<IProps> = (props) => {
             <Progress color="success" value={50}>
               15 000 $
             </Progress>
+  
+            <h2 className="pr-budget-progress__sum">30 000 $</h2>
           </div>
 
-          <h2 className="pr-budget__sum">30 000 $</h2>
 
           <Button>Support now</Button>
         </div>
@@ -220,7 +221,11 @@ const Project: React.FC<IProps> = (props) => {
                     <span className="pr-comment__ago">{com.ago}</span>
                   </div>
 
-                  <p className="pr-comment__text">{com.comment}</p>
+                  {/* <p className="pr-comment__text">{com.comment}</p> */}
+                  <p className="pr-comment__text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet ratione quae quasi sequi quibusdam voluptatem labore dignissimos et est molestias nemo in voluptates ex unde deleniti harum, consequatur doloribus hic?
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore esse eligendi inventore consequuntur atque sunt reprehenderit doloremque enim officiis id culpa rem temporibus quibusdam numquam, quaerat aut at, placeat unde!
+                  </p>
 
                   <div className="pr-comment-footer">
                     <span className="_link">Reply</span>
@@ -301,7 +306,8 @@ const StyledProject = styled.div`
       background: #f5f5f5;
 
       &__container {
-        padding: 80px 0;
+        padding-top: 80px;
+        padding-bottom: 80px;
         display: flex;
         justify-content: space-around;
       }
@@ -336,7 +342,7 @@ const StyledProject = styled.div`
       }
 
       &-list {
-        width: 525px;
+        max-width: 525px;
 
         &__title {
           margin-bottom: 60px;
@@ -388,8 +394,10 @@ const StyledProject = styled.div`
       color: white;
 
       &__container {
-        padding: 80px 0;
+        padding-top: 80px;
+        padding-bottom: 80px;
         display: flex;
+        align-items: center;
       }
 
       &__title {
@@ -397,13 +405,21 @@ const StyledProject = styled.div`
       }
 
       &-progress {
+        display: flex;
         flex: 1;
         margin: 0 25px;
+        align-items: center;
+
+        >.progress {
+          margin-right: 20px;
+          flex: 1;
+        }
+       
+        &__sum {
+          margin-right: 40px;
+        }
       }
 
-      &__sum {
-        margin-right: 40px;
-      }
     }
 
     /* Comments */
@@ -450,6 +466,63 @@ const StyledProject = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
+      }
+    }
+  
+    /* Media queries */
+    @media(max-width: 850px) {
+      &-avpos {
+        &__container {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        &-author {
+          margin-bottom: 60px;
+        }
+      }
+
+      &-budget {
+        &__container {
+          flex-direction: column;
+          align-items: normal;
+
+          button{
+            margin-top: 40px;
+            align-self: center;
+          }
+        }
+
+        &__title {
+          margin-bottom: 20px;
+          align-self: center;
+        }
+
+        &-progress {
+          margin: 0;
+          
+
+          &__sum {
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    @media(max-width: 550px) {
+      &-pos {
+        flex-direction: column;
+
+        button {
+          width: 100%;
+        }
+      }
+
+      &-comment {
+        &__avatar {
+          width: 50px;
+          height: 50px;
+        }
       }
     }
   }
