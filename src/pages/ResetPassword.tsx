@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
-import { routePaths } from "services/router/routes"; 
+import { useHistory, useParams } from "react-router-dom";
+import { routePaths } from "services/router/routes";
 
 import BackgroundImage from "assets/images/authbc.jpg";
 
@@ -10,93 +10,80 @@ import TextField from "@material-ui/core/TextField";
 import { Button } from "reactstrap";
 import { useForm, Controller } from "react-hook-form";
 import AuthApi from "api/auth/authApi";
-import { ILoginCredentials } from "api/auth/types";
+import { IResetPasswordCredentials } from "api/auth/types";
 import { toast } from "react-toastify";
 
-interface IFormInput extends ILoginCredentials {}
+interface IFormInput extends IResetPasswordCredentials { }
 
-const Login: React.FC = () => {
+const ResetPassword: React.FC = () => {
   const { control, handleSubmit, formState: { errors } } = useForm<IFormInput>();
 
   const history = useHistory();
+  const { id } = useParams<{id: string}>();
 
   function onRegister() {
     history.push(routePaths.register);
   }
 
-  function onForgotPassword() {
-    history.push(routePaths.forgotPassword);
-  }
-
-  function onSubmit (data: IFormInput) {
-    AuthApi.login(data)
+  function onSubmit(data: IFormInput) {
+    AuthApi.resetPassword(data, id)
       .then(res => {
         // redirect to home page
 
-        toast.success('You have successfully signed in!', {
-          position: 'top-right',
-          autoClose: 10000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true
-        })
-        history.push(routePaths.home)
+        toast.success('Your password is successfully changed! Please sign in!')
+        history.push(routePaths.login);
       })
       .catch(err => {
         if (err.response?.status === 400)
-          toast.error('Bad request! Check if all the information is correct.', {
-            position: 'top-right',
-            autoClose: 10000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true
-          })
-        else 
-          toast.error('Sorry! Something went wrong...', {
-            position: 'top-right',
-            autoClose: 10000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true
-          })
+          toast.error('Bad request! Check if all the information is correct.')
+        else
+          toast.error('Sorry! Something went wrong...')
       })
   };
 
   return (
     <AuthBackground image={BackgroundImage}>
       {/* Dialog's container */}
-      <StyledLogin>
+      <StyledResetPassword>
         {/* Dialog */}
         <div className="ath__container">
           {/* Form section */}
           <div className="ath-form__wrapper">
-            <h4>Log in</h4>
+            <h4>Reset your password</h4>
 
             <form className="ath-form" onSubmit={handleSubmit(onSubmit)}>
               <div className="ath-form__item">
                 <Controller
                   name='email'
                   control={control}
-                  rules={{required: true}}
+                  rules={{ required: true }}
                   defaultValue=''
-                  render={({field}) => <TextField label="E-mail" variant='outlined' {...field} error={!!errors.email} />}
+                  render={({ field }) => <TextField label="E-mail" variant='outlined' {...field} error={!!errors.email} />}
                 />
               </div>
 
               <div className="ath-form__item">
-                <Controller 
+                <Controller
                   name='password'
-                  defaultValue=''
-                  rules={{required: true}}
                   control={control}
-                  render={({field}) => <TextField label="Password" type="password" variant='outlined' {...field} error={!!errors.password} />}
+                  rules={{ required: true }}
+                  defaultValue=''
+                  render={({ field }) => <TextField label="Password" type='password' variant='outlined' {...field} error={!!errors.password} />}
                 />
               </div>
 
-              <span className="ath-form__fpw" onClick={onForgotPassword} >Forgot your password?</span>
+              <div className="ath-form__item">
+                <Controller
+                  name='passwordConfirm'
+                  control={control}
+                  rules={{ required: true }}
+                  defaultValue=''
+                  render={({ field }) => <TextField label="Confirm password" type='password' variant='outlined' {...field} error={!!errors.passwordConfirm} />}
+                />
+              </div>
 
               <Button color="primary">
-                Log In
+                Submit
               </Button>
             </form>
           </div>
@@ -115,14 +102,14 @@ const Login: React.FC = () => {
             </div>
           </div>
         </div>
-      </StyledLogin>
+      </StyledResetPassword>
     </AuthBackground>
   );
 };
 
-export default Login;
+export default ResetPassword;
 
-const StyledLogin = styled.div`
+const StyledResetPassword = styled.div`
   display: flex;
   margin: 60px 0;
 
@@ -150,7 +137,7 @@ const StyledLogin = styled.div`
       width: 100%;
 
       &__item {
-        margin-top: 20px;
+        margin: 20px 0;
 
         &,
         > div {
@@ -162,11 +149,6 @@ const StyledLogin = styled.div`
         margin: 20px 0;
         display: block;
         color: #18a0fb;
-
-        &:hover {
-          color: #1276b8;
-          cursor: pointer;
-        }
       }
     }
     //

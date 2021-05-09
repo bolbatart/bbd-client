@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Header from "components/Header/NavHeader/NavHeader";
 import Footer from "components/Footer/Footer";
 
@@ -9,6 +12,13 @@ import RenderRoutes from "services/router/RenderRoutes";
 const Layout: React.FC = () => {
   return (
     <StyledLayout>
+      <ToastContainer 
+        position='top-right'
+        autoClose={10000}
+        hideProgressBar={false}
+        closeOnClick={true}
+        pauseOnHover={true}
+      />
       <Header />
       <main>
         <RenderRoutes />

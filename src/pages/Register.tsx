@@ -8,12 +8,47 @@ import BackgroundImage from "assets/images/authbc.jpg";
 import AuthBackground from "components/Backgrounds/AuthBackground";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "reactstrap";
+import { IRegisterCredentials } from "api/auth/types";
+import { Controller, useForm } from "react-hook-form";
+import AuthApi from "api/auth/authApi";
+import { toast } from "react-toastify";
+
+interface IFormInput extends IRegisterCredentials {}
 
 const Register: React.FC = () => {
   const history = useHistory();
+  const { control, handleSubmit, formState: { errors } } = useForm<IFormInput>();
 
   function onLogin() {
     history.push(routePaths.login);
+  }
+
+  function onSubmit(data: IFormInput) {
+    AuthApi.register(data)
+      .then(res => {
+        // redirect to home page
+
+        toast.success('You have successfully signed up!', {
+          position: 'top-right',
+          autoClose: 10000, 
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true
+        })
+        history.push(routePaths.home)
+      })
+      .catch(err => {
+        if (err.response?.status === 400) {
+          const errMsg = err.response?.data.message 
+            ? Array.isArray(err.response?.data.message)
+              ? err.response?.data.message[0] 
+                : err.response?.data.message
+              : 'Bad request! Check if all the information is correct.'
+          toast.error(errMsg)
+        }
+        else 
+          toast.error('Sorry! Something went wrong...')
+      })
   }
 
   return (
@@ -36,41 +71,58 @@ const Register: React.FC = () => {
           <div className="ath-form__wrapper">
             <h4>Sign up</h4>
 
-            <form className="ath-form">
+            <form className="ath-form" onSubmit={handleSubmit(onSubmit)}>
               <div className="ath-form__item">
-                <TextField
-                  id="outlined-basic"
-                  label="First name"
-                  variant="outlined"
+                <Controller
+                  name='firstName'
+                  control={control}
+                  rules={{ required: true }}
+                  defaultValue=''
+                  render={({field}) => <TextField label="First name" variant='outlined' {...field} error={!!errors.firstName} />}
                 />
               </div>
 
               <div className="ath-form__item">
-                <TextField
-                  id="outlined-basic"
-                  label="Last name"
-                  variant="outlined"
+                <Controller
+                  name='lastName'
+                  control={control}
+                  rules={{ required: true }}
+                  defaultValue=''
+                  render={({field}) => <TextField label="Last name" variant='outlined' {...field} error={!!errors.lastName} />}
                 />
               </div>
 
               <div className="ath-form__item">
-                <TextField
-                  id="outlined-basic"
-                  label="E-mail"
-                  variant="outlined"
+                <Controller
+                  name='email'
+                  control={control}
+                  rules={{ required: true }}
+                  defaultValue=''
+                  render={({field}) => <TextField label="E-mail" variant='outlined' {...field} error={!!errors.email} />}
                 />
               </div>
 
               <div className="ath-form__item">
-                <TextField
-                  id="outlined-basic"
-                  label="Password"
-                  type="password"
-                  variant="outlined"
+                <Controller 
+                  name='password'
+                  defaultValue=''
+                  rules={{required: true}}
+                  control={control}
+                  render={({field}) => <TextField label="Password" type="password" variant='outlined' {...field} error={!!errors.password} />}
                 />
               </div>
 
-              <Button color="primary" type="button">
+              <div className="ath-form__item">
+                <Controller 
+                  name='passwordConfirm'
+                  defaultValue=''
+                  rules={{required: true}}
+                  control={control}
+                  render={({field}) => <TextField label="Confirm password" type="password" variant='outlined' {...field} error={!!errors.passwordConfirm} />}
+                />
+              </div>
+
+              <Button color="primary">
                 Create an account
               </Button>
             </form>

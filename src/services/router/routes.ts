@@ -6,11 +6,16 @@ import Register from 'pages/Register';
 import ProjectsList from 'pages/ProjectsList';
 import Project from 'pages/Project';
 import Profile from 'pages/Profile';
+import ForgotPassword from 'pages/ForgotPassword';
+import ResetPassword from 'pages/ResetPassword';
+
 
 export const routePaths = {
   home: '/',
   login: '/login',
   register: '/register',
+  forgotPassword: '/forgotPassword',
+  resetPassword: '/reset/:id',
   projectsList: '/projects',
   project: '/projects/:id',
   profile: '/profile/:id',
@@ -26,6 +31,16 @@ export const routes: IRoute[] = [
     auth: false,
     page: Login,
     path: routePaths.login
+  },
+  {
+    auth: false,
+    page: ForgotPassword,
+    path: routePaths.forgotPassword
+  },
+  {
+    auth: false,
+    page: ResetPassword,
+    path: routePaths.resetPassword
   },
   {
     auth: false,
