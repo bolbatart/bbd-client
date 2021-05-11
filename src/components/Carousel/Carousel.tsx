@@ -21,7 +21,7 @@ const Carousel: React.FC<IProps> = (props) => {
         isRTL={false}
         pagination={false}
       >
-        <div className="item">
+        {/* <div className="item">
           <ProjectCard />
         </div>
         <div className="item">
@@ -38,7 +38,7 @@ const Carousel: React.FC<IProps> = (props) => {
         </div>
         <div className="item">
           <ProjectCard />
-        </div>
+        </div> */}
       </ElasticCarousel>
     </StyledCarousel>
   );

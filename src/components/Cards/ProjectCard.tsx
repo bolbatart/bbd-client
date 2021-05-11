@@ -5,10 +5,21 @@ import { Button } from "reactstrap";
 
 import LocationIcon from "assets/icons/location.svg";
 import Image from "assets/images/hpheader.jpg";
+import { IProjectsView } from "api/projects/types";
+import { useHistory } from "react-router-dom";
+import { routePaths } from "services/router/routes";
 
-interface IProps {}
+interface IProps {
+  project: IProjectsView;
+}
 
-const ProjectCard: React.FC<IProps> = (props) => {
+const ProjectCard: React.FC<IProps> = ({ project }) => {
+  const history = useHistory();
+  
+  function onFindOutMore() {
+    history.push(`projects/${project.id}`)
+  }
+
   return (
     <StyledProjectCard>
       <div className="pc-img">
@@ -19,28 +30,26 @@ const ProjectCard: React.FC<IProps> = (props) => {
 
       {/* paddings */}
       <div className="pc-content">
-        <div className="pc-area semi-bold">project area</div>
+        <div className="pc-area semi-bold">{project.area}</div>
 
-        <h3 className="pc-content__title bold">Name of the project</h3>
+        <h3 className="pc-content__title bold">{project.name}</h3>
 
-        <p className="pc-content__description">
-          Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-          fugit, sed quia consequuntur.
-        </p>
+        <p className="pc-content__description">{project.shortDescription}</p>
 
         <div className="pc-content__professionals">
           <h6 className="prof__title bold">Professionals needed:</h6>
 
           <ul className="prof-list">
-            <li className="prof-list__item">Graphic designer</li>
-            <li className="prof-list__item">Back End developer</li>
+            {project.availablePositions.map((item, i) => (
+              <li className="prof-list__item" key={i}>{item}</li>
+            ))}    
           </ul>
         </div>
 
         <div className="pc-content-footer">
-          <div className="pc-content-footer__location">Location</div>
+          <div className="pc-content-footer__location">{project.location}</div>
 
-          <Button color="primary">Find out more</Button>
+          <Button color="primary" onClick={onFindOutMore}>Find out more</Button>
         </div>
       </div>
     </StyledProjectCard>

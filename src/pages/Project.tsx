@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import HpHeaderImage from "assets/images/hpheader.jpg";
@@ -12,6 +12,10 @@ import GreenDot from "assets/icons/online.svg";
 
 import Header from "components/Header/Header";
 import { Button, Progress } from "reactstrap";
+import { IProjectsView } from "api/projects/types";
+import ProjectsApi from "api/projects/projectsApi";
+import { useHistory, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const positions = [
   {
@@ -74,6 +78,20 @@ const comments = [
 interface IProps {}
 
 const Project: React.FC<IProps> = (props) => {
+  // const { id } = useParams<{id: string}>();
+  // const [project, setProject] = useState<IProjectsView>();
+
+
+  // useEffect(() => {
+  //   ProjectsApi.getById(id)
+  //     .then(res => {
+  //       setProject(res.data);
+  //     })
+  //     .catch(err => {
+  //       toast.error('Oops... Something went wrong.')
+  //     })
+  // }, []);
+
   return (
     <StyledProject>
       <Header small image={HpHeaderImage}>

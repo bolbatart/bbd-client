@@ -1,19 +1,23 @@
+import ProjectsApi from 'api/projects/projectsApi';
+import { IFilterQuery, IPaginationMeta, IProjectsView } from 'api/projects/types';
 import ProjectCard from 'components/Cards/ProjectCard';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
 interface IProps {
-  // get projects
+  projects: IProjectsView[];
 }
 
-const ListOfProjects: React.FC<IProps> = (props) => {
+const ListOfProjects: React.FC<IProps> = ({ projects }) => {
   return (
     <StyledListOfProjects>
-      {Array(30).fill(
-        <div className="pr-list__item">
-          <ProjectCard />
+      {projects && projects.length > 0 && projects.map((project, i) => (
+        <div className="pr-list__item" key={i}>
+          <ProjectCard project={project} />
         </div>
-      )}
+      ))}
+
     </StyledListOfProjects>
   )
 }

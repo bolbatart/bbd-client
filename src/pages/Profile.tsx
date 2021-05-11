@@ -59,7 +59,7 @@ const Profile: React.FC<IProps> = (props) => {
           <h3 className={`prf-projects-selector__item ${isPostedOpen ? '_normal' : ''}`} onClick={() => setIsPostedOpen(false)}>Liked projects</h3>
         </div>
 
-        <ListOfProjects />
+        {/* <ListOfProjects /> */}
       </section>
     </StyledProfile>
   )

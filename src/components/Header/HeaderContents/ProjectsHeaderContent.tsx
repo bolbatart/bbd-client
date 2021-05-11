@@ -4,8 +4,15 @@ import styled from "styled-components";
 import { Button } from "reactstrap";
 import { Input } from "semantic-ui-react";
 import { Dropdown } from "semantic-ui-react";
+import { IFilterInput, IFilterQuery } from "api/projects/types";
 
-const ProjectsHeaderContent: React.FC = () => {
+interface IProps {
+  onFilter: () => void;
+  setFilterQuery: React.Dispatch<React.SetStateAction<IFilterQuery>>;
+  filterParams?: IFilterInput;
+}
+
+const ProjectsHeaderContent: React.FC<IProps> = ({ setFilterQuery, filterParams, onFilter }) => {
   return (
     <StyledProjectsHeaderContent>
       <h1>Find a project</h1>
@@ -15,31 +22,39 @@ const ProjectsHeaderContent: React.FC = () => {
           {/* col */}
           <div className="prlh-filter__container">
             <div className="prlh-filter__col">
-              <Input placeholder="Key words" />
-              <Dropdown
-                placeholder="Available positions"
-                multiple
-                selection
-                options={undefined}
+              <Input 
+                placeholder="Key words" 
+                value={filterParams?.name} 
+                onChange={({currentTarget}) => 
+                  setFilterQuery(prev => ({ ...prev, name: currentTarget.value }))
+                } 
+              />
+              <Input 
+                placeholder="Project area" 
+                value={filterParams?.area} 
+                onChange={({currentTarget}) => 
+                  setFilterQuery(prev => ({ ...prev, area: currentTarget.value }))
+                } 
               />
             </div>
 
             <div className="prlh-filter__col sm">
-              <Dropdown
-                placeholder="Project area"
-                multiple
-                selection
-                options={undefined}
+              <Input 
+                placeholder="Location" 
+                value={filterParams?.location} 
+                onChange={({currentTarget}) => 
+                  setFilterQuery(prev => ({ ...prev, location: currentTarget.value }))
+                } 
               />
-              <Dropdown
+              {/* <Dropdown
                 placeholder="Country"
                 multiple
                 selection
                 options={undefined}
-              />
+              /> */}
             </div>
           </div>
-          <Button color="primary" type="button">
+          <Button color="primary" onClick={onFilter}>
             Search
           </Button>
           {/* col */}

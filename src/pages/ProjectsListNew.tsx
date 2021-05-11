@@ -22,15 +22,11 @@ const ProjectsList: React.FC = () => {
   const [totalProjects, setTotalProjects] = useState(0);
 
   function onFilter() {
-    fetchProjects({ ...filterQuery, skip: '0'}, (res) => {
-      setProjects(res.data.results);
-    })
+    fetchProjects(filterQuery, () => {})
   }
 
   function onLoadMore() {
-    if (projects) fetchProjects(filterQuery, (res) => {
-      setProjects(prev => ([ ... prev, ...res.data.results]))
-    })
+    if (projects) fetchProjects(filterQuery)
   }
 
   function getNextFilterQuery(meta: IPaginationMeta): IFilterQuery {
@@ -47,8 +43,8 @@ const ProjectsList: React.FC = () => {
       .then(res => {
         setIsFetching(false);
         setFilterQuery(getNextFilterQuery(res.data.meta))
-        setTotalProjects(res.data.meta.total);
-        if (callback) callback(res);
+        setProjects(prev => ([ ...prev, ...res.data.results ]))
+        if (totalProjects === 0) setTotalProjects(res.data.meta.total);
       })
       .catch(err => {
         toast.error('Ops! Something went wrong!')
@@ -57,9 +53,7 @@ const ProjectsList: React.FC = () => {
   }
 
   useEffect(() => {
-    fetchProjects(filterQuery, (res) => {
-      setProjects(res.data.results)
-    })
+    fetchProjects(filterQuery)
   }, []);
 
   return (
@@ -76,7 +70,7 @@ const ProjectsList: React.FC = () => {
         <div className="_container">
           {/* Sort by */}
           <div className="prl-projects-sortby">
-            {/* <span>Sort by:</span>
+            <span>Sort by:</span>
             <div className="prl-projects-sortby__wrapper">
               <Dropdown
                 placeholder="Project area"
@@ -102,7 +96,7 @@ const ProjectsList: React.FC = () => {
                 selection
                 options={undefined}
               />
-            </div> */}
+            </div>
           </div>
 
           <h2 className="bold">Find an existing project to work on!</h2>
@@ -110,6 +104,7 @@ const ProjectsList: React.FC = () => {
           
           <>
             <ListOfProjects projects={projects} />
+            {/* show if there is no more data in db,  */}
             {!isFetching && projects.length > 0 && projects.length < totalProjects &&
               <div className="pr-list__load-wrapper">
                 <Button onClick={onLoadMore} >+ Load more</Button>
