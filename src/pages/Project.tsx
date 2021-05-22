@@ -78,19 +78,19 @@ const comments = [
 interface IProps {}
 
 const Project: React.FC<IProps> = (props) => {
-  // const { id } = useParams<{id: string}>();
-  // const [project, setProject] = useState<IProjectsView>();
+  const { id } = useParams<{id: string}>();
+  const [project, setProject] = useState<IProjectsView>();
 
 
-  // useEffect(() => {
-  //   ProjectsApi.getById(id)
-  //     .then(res => {
-  //       setProject(res.data);
-  //     })
-  //     .catch(err => {
-  //       toast.error('Oops... Something went wrong.')
-  //     })
-  // }, []);
+  useEffect(() => {
+    ProjectsApi.getById(id)
+      .then(res => {
+        setProject(res.data);
+      })
+      .catch(err => {
+        toast.error('Oops... Something went wrong.')
+      })
+  }, []);
 
   return (
     <StyledProject>

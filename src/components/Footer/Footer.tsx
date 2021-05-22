@@ -4,7 +4,10 @@ import styled from "styled-components";
 const Footer: React.FC = () => {
   return (
     <StyledFooter>
-      <h4>Footer</h4>
+      <div className='_container'>
+        <h4>Project Happens</h4>
+        <p>Copyright © Project Happens, 2021</p>
+      </div>
     </StyledFooter>
   );
 };
@@ -12,6 +15,9 @@ const Footer: React.FC = () => {
 export default Footer;
 
 const StyledFooter = styled.div`
-  // height must be set in the components/Layout.tsx footer { }
-  height: 100%;
+  padding: 60px 0;
+
+  h4 {
+    margin-bottom: 16px;
+  }
 `;

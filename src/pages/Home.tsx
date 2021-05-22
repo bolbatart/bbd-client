@@ -7,8 +7,24 @@ import HomeHeaderContent from "components/Header/HeaderContents/HomeHeaderConten
 import AppDescCard from "components/Cards/AppDescCard";
 import { Button } from "reactstrap";
 import Carousel from "components/Carousel/Carousel";
+import { useHistory } from "react-router-dom";
+import { routePaths } from "services/router/routes";
 
 const Home: React.FC = () => {
+  const history = useHistory();
+
+  function onSeeClick() {
+    history.push(routePaths.projectsList);    
+  }
+
+  function onRegisterClick() {
+    history.push(routePaths.register);
+  }
+
+  function onLoginClick() {
+    history.push(routePaths.login);
+  }
+
   return (
     <StyledHome>
       <Header image={image}>
@@ -24,6 +40,7 @@ const Home: React.FC = () => {
             text="Have always dreamt of seeing your idea come to life? Post your project now and wait for your team or funders to find you!"
             buttonText="Post a project"
             buttonOutlined
+            onClick={onSeeClick}
           />
           <AppDescCard
             maxWidth="270px"
@@ -31,6 +48,7 @@ const Home: React.FC = () => {
             text="Find developers, designers, engineers, other creatives for the project and start collaborating."
             buttonText="See available vacancies"
             buttonOutlined
+            onClick={onSeeClick}
           />
           <AppDescCard
             maxWidth="245px"
@@ -38,6 +56,7 @@ const Home: React.FC = () => {
             text="Help any project you believe in, by donating money and funding its expenses."
             buttonText="Find a project"
             buttonOutlined
+            onClick={onSeeClick}
           />
         </div>
       </section>
@@ -59,8 +78,8 @@ const Home: React.FC = () => {
             Join our website NOW and let your idea come to life!
           </h2>
           <div className="hp-join__buttons">
-            <Button>Sign up</Button>
-            <Button outline>Log in</Button>
+            <Button onClick={onRegisterClick} >Sign up</Button>
+            <Button outline onClick={onLoginClick} >Log in</Button>
           </div>
         </div>
       </section>

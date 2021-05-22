@@ -1,13 +1,21 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Button } from "reactstrap";
 import styled from "styled-components";
+import { routePaths } from 'services/router/routes';
 
 const HomeHeaderContent: React.FC = () => {
+  const history = useHistory();
+
+  function onFindClick() {
+    history.push(routePaths.projectsList);
+  }
+
   return (
     <StyledHomeHeaderContent>
       <div className="home-header-content">
         <h1>Make your project come alive with the help of others</h1>
-        <Button color="primary">Find a project</Button>
+        <Button color="primary" onClick={onFindClick}>Find a project</Button>
       </div>
     </StyledHomeHeaderContent>
   );

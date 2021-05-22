@@ -7,6 +7,7 @@ interface IProps extends IStyledProps {
   text?: string;
   buttonText?: string;
   buttonOutlined?: boolean;
+  onClick?: () => void;
 }
 
 const AppDescCard: React.FC<IProps> = (props) => {
@@ -15,7 +16,7 @@ const AppDescCard: React.FC<IProps> = (props) => {
       {props.title && <h4 className="dc-title bold">{props.title}</h4>}
       {props.text && <p className="dc-text">{props.text}</p>}
       {props.buttonText && (
-        <Button outline={props.buttonOutlined} color="primary">
+        <Button outline={props.buttonOutlined} color="primary" onClick={props.onClick}>
           {props.buttonText}
         </Button>
       )}

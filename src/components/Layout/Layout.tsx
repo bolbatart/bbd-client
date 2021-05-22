@@ -44,7 +44,8 @@ const StyledLayout = styled.div`
   footer {
     position: absolute;
     bottom: 0;
-
+    right: 0;
+    left: 0;
     height: 80px;
   }
 `;
