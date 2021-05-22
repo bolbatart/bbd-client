@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import Header from "components/Header/Header";
@@ -9,9 +9,12 @@ import { Button } from "reactstrap";
 import Carousel from "components/Carousel/Carousel";
 import { useHistory } from "react-router-dom";
 import { routePaths } from "services/router/routes";
+import ProjectsApi from "api/projects/projectsApi";
+import { IProjectsView } from "api/projects/types";
 
 const Home: React.FC = () => {
   const history = useHistory();
+  const [lastWeekProjects, setLastWeekProjects] = useState<IProjectsView[]>();
 
   function onSeeClick() {
     history.push(routePaths.projectsList);    
@@ -24,6 +27,16 @@ const Home: React.FC = () => {
   function onLoginClick() {
     history.push(routePaths.login);
   }
+
+  useEffect(() => {
+    ProjectsApi.getLastWeek()
+      .then(res => {
+        setLastWeekProjects(res.data);
+      })
+      .catch(err => {
+
+      })
+  }, []);
 
   return (
     <StyledHome>
@@ -63,12 +76,14 @@ const Home: React.FC = () => {
       {/* /instruction */}
 
       {/* New this week */}
-      <section className="hp-ntw">
-        <div className="hp-ntw__container _container">
-          <h2 className="hp-ntw__title bold">New this week</h2>
-          <Carousel />
-        </div>
-      </section>
+      {lastWeekProjects && lastWeekProjects.length > 0 &&
+        <section className="hp-ntw">
+          <div className="hp-ntw__container _container">
+            <h2 className="hp-ntw__title bold">New this week</h2>
+            <Carousel projects={lastWeekProjects} />
+          </div>
+        </section>
+      }
       {/* /New this week */}
 
       {/* Join us */}

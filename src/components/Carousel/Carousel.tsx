@@ -3,14 +3,15 @@ import styled from "styled-components";
 
 import ElasticCarousel from "react-elastic-carousel";
 import ProjectCard from "components/Cards/ProjectCard";
+import { IProjectsView } from "api/projects/types";
 
-interface IProps {}
+interface IProps {
+  projects: IProjectsView[];
+}
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
   { width: 800, itemsToShow: 2 },
-  // { width: 768, itemsToShow: 3 },
-  // { width: 1200, itemsToShow: 4 },
 ];
 
 const Carousel: React.FC<IProps> = (props) => {
@@ -21,24 +22,11 @@ const Carousel: React.FC<IProps> = (props) => {
         isRTL={false}
         pagination={false}
       >
-        {/* <div className="item">
-          <ProjectCard />
-        </div>
-        <div className="item">
-          <ProjectCard />
-        </div>
-        <div className="item">
-          <ProjectCard />
-        </div>
-        <div className="item">
-          <ProjectCard />
-        </div>
-        <div className="item">
-          <ProjectCard />
-        </div>
-        <div className="item">
-          <ProjectCard />
-        </div> */}
+        {props.projects.map((project, i) => 
+          <div className="item" key={i}>
+            <ProjectCard project={project} />
+          </div>
+        )}
       </ElasticCarousel>
     </StyledCarousel>
   );

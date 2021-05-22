@@ -10,4 +10,8 @@ export default class ProjectsApi {
     public static async getById(id: string) {
         return await Axios.Instance.get(`/projects/${id}`);
     }
+
+    public static async getLastWeek() {
+        return await Axios.Instance.get(`/projects/lastweek`);
+    }
 }
