@@ -5,9 +5,15 @@ import { useHistory } from "react-router-dom";
 
 import { Button } from "reactstrap";
 import { Squash as Hamburger } from "hamburger-react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from 'services/redux/store'; 
+import { logout } from "services/redux/actions/authAction";
+import AuthApi from "api/auth/authApi";
+import { toast } from "react-toastify";
 
 const Header: React.FC = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   function onHamburger() {
@@ -17,6 +23,18 @@ const Header: React.FC = () => {
   function onLink(path: string) {
     history.push(path);
   }
+
+  function onLogout() {
+    AuthApi.logout()
+      .then(res => {
+        dispatch(logout());
+      })
+      .catch(err => {
+        toast('Ooops. Something went wrong!');
+      })
+  }
+
+  const loggedIn = useSelector((state: RootState) => state.auth.auth)
 
   return (
     <StyledHeader>
@@ -75,13 +93,23 @@ const Header: React.FC = () => {
             </li>
             <li className="nh-nav-item _link">Post a project</li>
           </ul>
-          <Button
-            outline
-            color="primary"
-            onClick={() => onLink(routePaths.login)}
-          >
-            Log In
-          </Button>
+          {loggedIn ? (
+            <Button
+              outline
+              color="primary"
+              onClick={onLogout}
+            >
+              Log out
+            </Button>            
+          ) : (
+            <Button
+              outline
+              color="primary"
+              onClick={() => onLink(routePaths.login)}
+            >
+              Log In
+            </Button>
+          )}
         </nav>
       </div>
     </StyledHeader>
