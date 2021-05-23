@@ -12,7 +12,7 @@ export interface IPaginationQuery {
 export interface IFilterQuery extends IFilterInput, IPaginationQuery {}
 
 export interface IProjectsView {
-    id: string;
+    _id: string;
     name: string;
     area: string;
     shortDescription: string;

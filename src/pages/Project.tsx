@@ -16,6 +16,8 @@ import { IProjectsView } from "api/projects/types";
 import ProjectsApi from "api/projects/projectsApi";
 import { useHistory, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { IProfileView } from "api/profile/types";
+import { routePaths } from "services/router/routes";
 
 const positions = [
   {
@@ -78,17 +80,24 @@ const comments = [
 interface IProps {}
 
 const Project: React.FC<IProps> = (props) => {
+  const history = useHistory();
   const { id } = useParams<{id: string}>();
   const [project, setProject] = useState<IProjectsView>();
+  const [author, setAuthor] = useState<IProfileView>();
 
+  function onAuthor() {
+    history.push('/profile/' + id);
+  }
 
   useEffect(() => {
     ProjectsApi.getById(id)
       .then(res => {
-        setProject(res.data);
+        setProject(res.data.project);
+        setAuthor(res.data.author);
       })
       .catch(err => {
         toast.error('Oops... Something went wrong.')
+        history.goBack();
       })
   }, []);
 
@@ -97,19 +106,18 @@ const Project: React.FC<IProps> = (props) => {
       <Header small image={HpHeaderImage}>
         <div className="pr-header">
           <div className="pr-header__container">
-            <h1 className="pr-header__title">PopCorn</h1>
+            <h1 className="pr-header__title">{project?.name}</h1>
 
             <div className="pr-header-sub">
-              <span className="hp-header-sub__area">IT</span>
+              <span className="hp-header-sub__area">{project?.area}</span>
               <span className="hp-header-sub__divider"> • </span>
               <span className="hp-header-sub__location">
-                London, United Kingdom
+                {project?.location}
               </span>
             </div>
 
             <p className="hp-header__desc">
-              A mobile application for couples, helping them to match on one
-              movie to watch together
+              {project?.shortDescription}
             </p>
           </div>
         </div>
@@ -120,10 +128,7 @@ const Project: React.FC<IProps> = (props) => {
           <h2 className="pr-about__title">About project</h2>
 
           <p className="pr-about__about">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Accusantium dolorem ea dolore quod magnam libero officia ex illo,
-            animi quibusdam nulla quia beatae dignissimos nobis voluptatibus
-            eligendi? Nemo, numquam unde?
+
           </p>
 
           <div className="pr-about-footer">
@@ -156,7 +161,7 @@ const Project: React.FC<IProps> = (props) => {
       <section className="pr-avpos">
         <div className="pr-avpos__container _container">
           <div className="pr-avpos-author">
-            <img src={Avatar} alt="" className="pr-avpos-author__img" />
+            <img src={Avatar} alt="" className="pr-avpos-author__img" onClick={onAuthor} />
             <h4 className="pr-avpos-author__name">Scott Johnson</h4>
             <span className="pr-avpos-author__position">Senior Developer</span>
             <span className="pr-avpos-author__location">

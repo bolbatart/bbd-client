@@ -17,7 +17,7 @@ const ProjectCard: React.FC<IProps> = ({ project }) => {
   const history = useHistory();
   
   function onFindOutMore() {
-    history.push(`projects/${project.id}`)
+    history.push(`projects/${project._id}`)
   }
 
   return (

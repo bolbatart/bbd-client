@@ -107,15 +107,20 @@ const ProjectsList: React.FC = () => {
 
           <h2 className="bold">Find an existing project to work on!</h2>
           {isFetching && <CircularProgress />} 
-          
-          <>
-            <ListOfProjects projects={projects} />
-            {!isFetching && projects.length > 0 && projects.length < totalProjects &&
-              <div className="pr-list__load-wrapper">
-                <Button onClick={onLoadMore} >+ Load more</Button>
-              </div>
-            }
-          </>
+          {projects && projects.length > 0 ? (
+            <>
+              <ListOfProjects projects={projects} />
+              {!isFetching && projects.length > 0 && projects.length < totalProjects &&
+                <div className="pr-list__load-wrapper">
+                  <Button onClick={onLoadMore} >+ Load more</Button>
+                </div>
+              }
+            </>
+          ) : (
+            <p className="noprojects">
+              There is no projects
+            </p>
+          )}
 
         </div>
       </section>
@@ -148,6 +153,10 @@ const StyledProjectsList = styled.div`
         margin-right: 80px;
       }
     }
+  }
+
+  .noprojects {
+    margin-top: 30px;
   }
 
 // sort by

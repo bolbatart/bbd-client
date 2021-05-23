@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 
 import Avatar from 'assets/images/avatar.jpg';
 
 import { Button, Input, Modal } from 'reactstrap';
+import { IProfileView } from 'api/profile/types';
 
 
 
 interface IProps {
   isOpen: boolean;
   toogle: () => void;
+  profileData: IProfileView;
 }
 
 const EditProfileDialog: React.FC<IProps> = (props) => {
+  const [formData, setFormData] = useState();
+
   return (
     <Modal isOpen={props.isOpen} toogle={props.toogle} >
       <StyledEditProfileDialog>

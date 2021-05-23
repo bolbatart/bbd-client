@@ -12,11 +12,14 @@ import { IRegisterCredentials } from "api/auth/types";
 import { Controller, useForm } from "react-hook-form";
 import AuthApi from "api/auth/authApi";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { login } from "services/redux/actions/authAction";
 
 interface IFormInput extends IRegisterCredentials {}
 
 const Register: React.FC = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const { control, handleSubmit, formState: { errors } } = useForm<IFormInput>();
 
   function onLogin() {
@@ -27,7 +30,7 @@ const Register: React.FC = () => {
     AuthApi.register(data)
       .then(res => {
         // redirect to home page
-
+        dispatch(login(res.data._id))
         toast.success('You have successfully signed up!', {
           position: 'top-right',
           autoClose: 10000, 

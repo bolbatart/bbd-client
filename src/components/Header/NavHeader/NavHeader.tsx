@@ -65,7 +65,7 @@ const Header: React.FC = () => {
             >
               Projects
             </li>
-            <li className="nh-nav-item _link mobile _container">
+            <li className="nh-nav-item _link mobile _container" onClick={() => onLink(routePaths.myProfile)}>
               Post a project
             </li>
             <li
@@ -91,7 +91,7 @@ const Header: React.FC = () => {
             >
               Projects
             </li>
-            <li className="nh-nav-item _link">Post a project</li>
+            <li className="nh-nav-item _link" onClick={() => onLink(routePaths.myProfile)}>Post a project</li>
           </ul>
           {loggedIn ? (
             <Button

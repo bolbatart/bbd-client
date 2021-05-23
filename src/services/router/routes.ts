@@ -5,9 +5,11 @@ import Login from 'pages/Login';
 import Register from 'pages/Register';
 import ProjectsList from 'pages/ProjectsList';
 import Project from 'pages/Project';
-import Profile from 'pages/Profile';
 import ForgotPassword from 'pages/ForgotPassword';
 import ResetPassword from 'pages/ResetPassword';
+import UserProfile from 'pages/UserProfile';
+import MyProfile from 'pages/MyProfile';
+import CreateProject from 'pages/CreateProject';
 
 
 export const routePaths = {
@@ -18,7 +20,9 @@ export const routePaths = {
   resetPassword: '/reset/:id',
   projectsList: '/projects',
   project: '/projects/:id',
-  profile: '/profile/:id',
+  userProfile: '/profile/:id',
+  myProfile: '/me/profile',
+  createProject: '/createproject'
 }
 
 export const routes: IRoute[] = [
@@ -59,7 +63,17 @@ export const routes: IRoute[] = [
   },
   {
     auth: false,
-    page: Profile,
-    path: routePaths.profile
+    page: UserProfile,
+    path: routePaths.userProfile
+  },
+  {
+    auth: false,
+    page: MyProfile,
+    path: routePaths.myProfile
+  },
+  {
+    auth: false,
+    page: CreateProject,
+    path: routePaths.createProject
   }
 ]

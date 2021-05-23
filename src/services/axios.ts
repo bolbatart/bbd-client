@@ -35,7 +35,7 @@ export default class Axios {
 
     public async get(url: string, config?: AxiosRequestConfig) {
         try {
-            return await this.service.get(url, config);
+            return await this.service.get(url,  {withCredentials: true, ...config});
         } catch (error) {
             throw error;
         }
@@ -43,7 +43,7 @@ export default class Axios {
 
     public async post<T>(url: string, data?: T,  config?: AxiosRequestConfig) {
         try {
-            return await this.service.post(url, data, config);
+            return await this.service.post(url, data, {withCredentials: true, ...config});
         } catch (error) {
             throw error;
         }
@@ -51,7 +51,7 @@ export default class Axios {
 
     public async put<T>(url: string, data?: T, config?: AxiosRequestConfig) {
         try {
-            return await this.service.put(url, data, config);
+            return await this.service.put(url, data,  {withCredentials: true, ...config});
         } catch (error) {
             throw error;
         }
@@ -59,7 +59,7 @@ export default class Axios {
 
     public async delete(url: string, config?: AxiosRequestConfig) {
         try {
-            return await this.service.delete(url, config);
+            return await this.service.delete(url,  {withCredentials: true, ...config});
         } catch (error) {
             throw error;
         }

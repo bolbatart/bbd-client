@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 
 import HeaderImage from 'assets/images/hpheader.jpg';
@@ -9,43 +9,62 @@ import { Button } from 'reactstrap';
 import ProjectCard from 'components/Cards/ProjectCard';
 import ListOfProjects from 'components/List/ListOfProjects';
 import EditProfileDialog from 'components/Dialogs/EditProfileDialog';
+import ProfileApi from 'api/profile/profileApi';
+import { IProfileView } from 'api/profile/types';
+import { profile } from 'console';
+import { IProjectsView } from 'api/projects/types';
+import { useHistory } from 'react-router-dom';
+import { routePaths } from 'services/router/routes';
 
-interface IProps { }
+interface IProps { 
+    my?: boolean;
+    profileData: IProfileView;
+    projects?: IProjectsView[];
+}
 
-const Profile: React.FC<IProps> = (props) => {
-  const isAuth = true;
+const Profile: React.FC<IProps> = ({my, profileData, projects}) => {
+  const history = useHistory();
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isPostedOpen, setIsPostedOpen] = useState(true);
 
+  
   const toogleEditModal = () => {
     setIsEditOpen(!isEditOpen);
   }
 
   return (
     <StyledProfile>
-      <EditProfileDialog isOpen={isEditOpen} toogle={toogleEditModal} />
+      <EditProfileDialog isOpen={isEditOpen} toogle={toogleEditModal} profileData={profileData} />
 
       <Header image={HeaderImage}>
         <div className="prf-header__container _container">
           <img src={Avatar} alt="" className="prf-header__avatar _avatar" />
 
           <div className="prf-header__desc-wrapper">
-            <h2 className="prf-header__name">Scott Johnson</h2>
+            {profileData?.firstName && profileData.lastName && 
+                <h2 className="prf-header__name">{`${profileData?.firstName} ${profileData?.lastName}`}</h2>
+            }
+            {profileData?.jobPosition && 
+                <span className="prf-header__position">{`${profileData?.jobPosition}`}</span>
+            }
+            {profileData?.location && 
+                <span className="prf-header__location">{`${profileData?.location}`}</span>
+            }
 
-            <span className="prf-header__position">Senior Devoloper</span>
-            <span className="prf-header__location">London, United Kingdom</span>
-
-            <p className="prf-header__bio">
-              Looking for hardworking people to join my team! Enthusiasm & sports
-            </p>
+            {profileData?.bio && 
+                <p className="prf-header__bio">
+                {`${profileData?.bio}`}
+                </p>
+            }
 
             <div className='prf-header__buttons'>
-              {isAuth ? (
+              {my ? (
                 <>
+                  <Button onClick={() => history.push(routePaths.createProject)}>Post a new project</Button>
                   <Button outline onClick={toogleEditModal}>Edit information</Button>
-                  <Button>Post a new project</Button>
                 </>
               ) : (
+                profileData && profileData.website && profileData.website.length > 0 &&
                 <Button>Contact me</Button>
               )}
             </div>
